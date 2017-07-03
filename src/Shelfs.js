@@ -1,16 +1,22 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
-import { Link, Route } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import Shelf from './Shelf';
 
 class Shelfs extends React.Component {
 
     render() {
+        console.log(this.props)
+        var shelves = this.props.shelves.map( item => {
+            return <Shelf title={item} />
+        });
+
         return (
             <div className="list-books">
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>
+                { shelves }
                 <div className="list-books-content">
                     <div>
                         <div className="bookshelf">
