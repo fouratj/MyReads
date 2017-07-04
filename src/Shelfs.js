@@ -16,9 +16,24 @@ class Shelfs extends React.Component {
                     <h1>MyReads</h1>
                 </div>
 
-                <Shelf key="currentlyReading" title="Currently Reading" books={currentlyReading} />
-                <Shelf key="wantToRead" title="Want to Read" books={wantToRead} />
-                <Shelf key="read" title="Read" books={read} />
+                <Shelf 
+                    key="currentlyReading" 
+                    title="Currently Reading" 
+                    books={currentlyReading}
+                    updateBook={this.props.updateBook}
+                     />
+                <Shelf 
+                    key="wantToRead" 
+                    title="Want to Read" 
+                    books={wantToRead}
+                    updateBook={this.props.updateBook}
+                     />
+                <Shelf 
+                    key="read" 
+                    title="Read" 
+                    books={read}
+                    updateBook={this.props.updateBook}
+                     />
 
                 <div className="open-search">
                     <Link to="addBook">Add a book</Link>
