@@ -1,8 +1,7 @@
 import React from 'react'
-import * as BooksAPI from './BooksAPI'
+
 import { Link } from 'react-router-dom';
 import Shelf from './Shelf';
-import Book from './Book';
 
 class Shelfs extends React.Component {
 
@@ -11,11 +10,6 @@ class Shelfs extends React.Component {
         let wantToRead = this.props.books.filter( book => (book.shelf === "wantToRead"));
         let read = this.props.books.filter( book => (book.shelf === "read"));
         let currentlyReading = this.props.books.filter( book => (book.shelf === "currentlyReading"));
-
-                                    
-        let shelves = this.props.shelves.map( item => {
-            return <Shelf title={item} />
-        });
 
         return (
             <div className="list-books">
