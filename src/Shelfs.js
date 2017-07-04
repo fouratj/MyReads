@@ -2,12 +2,18 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import { Link } from 'react-router-dom';
 import Shelf from './Shelf';
+import Book from './Book';
 
 class Shelfs extends React.Component {
 
     render() {
         console.log(this.props)
-        var shelves = this.props.shelves.map( item => {
+        let wantToRead = this.props.books.filter( book => (book.shelf === "wantToRead"));
+        let read = this.props.books.filter( book => (book.shelf === "read"));
+        let currentlyReading = this.props.books.filter( book => (book.shelf === "currentlyReading"));
+
+                                    
+        let shelves = this.props.shelves.map( item => {
             return <Shelf title={item} />
         });
 
@@ -16,7 +22,22 @@ class Shelfs extends React.Component {
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>
-                { shelves }
+
+                <Shelf title="Currently Reading" books={currentlyReading} />
+                <Shelf title="Want to Read" books={wantToRead} />
+                <Shelf title="Read" books={read} />
+
+                <div className="open-search">
+                    <Link to="addBook">Add a book</Link>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default Shelfs;
+
+/*
                 <div className="list-books-content">
                     <div>
                         <div className="bookshelf">
@@ -168,13 +189,4 @@ class Shelfs extends React.Component {
                         </div>
                     </div>
                 </div>
-
-                <div className="open-search">
-                    <Link to="addBook">Add a book</Link>
-                </div>
-            </div>
-        )
-    }
-}
-
-export default Shelfs;
+                */
