@@ -28,9 +28,7 @@ class BooksApp extends React.Component {
     var self = this;
     BooksAPI.update(id, shelf)
             .then( (data) => {
-              console.log(data);
               this.getBookByID(id, shelf);
-              // this.getAllBooks();
             });
 
     
@@ -39,10 +37,10 @@ class BooksApp extends React.Component {
   getBookByID (id, shelf) {
     BooksAPI.get(id)
             .then((data) => {
-              console.log(data)
               data["shelf"] = shelf;
               this.setState( (state) => {
-                state.books = state.books.filter( item => (data.title !== item.title))
+                state.books = state.books
+                                        .filter( item => (data.title !== item.title))
                                         .concat(data);
               });
             });
