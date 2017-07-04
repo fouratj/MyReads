@@ -9,10 +9,9 @@ class Shelf extends React.Component {
         let books = this.props.books.map( (book, index) => {
             return (
                     <li key={book.author + book.title + index}>
-                        <Book 
-                            title={book.title}
-                            author={book.authors && book.authors[0]}
-                            url={ book.imageLinks && (book.imageLinks.thumbnail || book.imageLinks.smallThumbnail || '')} //some books don't have imagelink, this allows those to fail gracefully
+                        <Book
+                            book={book}
+                            updateBook={this.props.updateBook}
                         />
                     </li>
             )
