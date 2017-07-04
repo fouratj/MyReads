@@ -11,11 +11,21 @@ class BooksApp extends React.Component {
     shelfnames: ["Currently Reading", "Want to Read", "Read"]
   }
 
+  componentDidMount () {
+    BooksAPI.getAll()
+            .then((data) => {
+                console.log(data);
+                this.setState({
+                  books: data
+                })
+            });
+  }
+
   render() {
     return (
       <div className="app">
         <Route exact path="/" component={() => {
-          return <Shelfs shelves={this.state.shelfnames} />
+          return <Shelfs shelves={this.state.shelfnames} books={this.state.books} />
         }} />
         <Route path="/addBook" component={Search} />  
       </div>
@@ -23,4 +33,4 @@ class BooksApp extends React.Component {
   }
 }
 
-export default BooksApp
+export default BooksApp;
