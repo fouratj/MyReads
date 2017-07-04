@@ -6,12 +6,49 @@ import Shelfs from './Shelfs';
 import Search from './Search'
 
 class BooksApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.getBookByID = this.getBookByID.bind(this);
+  }
   state = {
-    books: [],
-    shelfnames: ["Currently Reading", "Want to Read", "Read"]
+    books: []
   }
 
   componentDidMount () {
+    BooksAPI.getAll()
+            .then((data) => {
+                this.setState({
+                  books: data
+                });
+            });
+  }
+
+  updateBook (id, shelf) {
+    console.log(id, " ", shelf)
+    var self = this;
+    BooksAPI.update(id, shelf)
+            .then( (data) => {
+              console.log(data);
+              this.getBookByID(id, shelf);
+              // this.getAllBooks();
+            });
+
+    
+  }
+
+  getBookByID (id, shelf) {
+    BooksAPI.get(id)
+            .then((data) => {
+              console.log(data)
+              data["shelf"] = shelf;
+              this.setState( (state) => {
+                state.books = state.books.filter( item => (data.title !== item.title))
+                                        .concat(data);
+              });
+            });
+  }
+
+  getAllBooks () {
     BooksAPI.getAll()
             .then((data) => {
                 this.setState({
@@ -24,9 +61,13 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route exact path="/" component={() => {
-          return <Shelfs shelves={this.state.shelfnames} books={this.state.books} />
-        }} />
-        <Route path="/addBook" component={Search} />  
+            return <Shelfs books={this.state.books} updateBook={this.updateBook.bind(this)} /> }
+          } 
+        />
+        <Route path="/addBook" component={() => {
+            return <Search updateBook={this.updateBook.bind(this)} /> }
+          } 
+        />  
       </div>
     )
   }
