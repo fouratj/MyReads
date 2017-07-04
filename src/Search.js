@@ -18,7 +18,7 @@ class Search extends React.Component {
                         results: data
                     });
                 }, () => {
-                    console.log(this.state.results)
+                    // console.log(this.state.results)
                 });
     }
 
@@ -33,10 +33,9 @@ class Search extends React.Component {
     render () {
         let results = this.state.results.map( (book, index) => {
             return <Book 
-                        title={book.title}
-                        author={book.authors && book.authors[0]}
-                        url={ book.imageLinks && (book.imageLinks.thumbnail || book.imageLinks.smallThumbnail || '')} //some books don't have imagelink, this allows those to fail gracefully
+                        book={book}
                         key={book.author + book.title + index}
+                        updateBook={this.props.updateBook}
                     />
         });
 
