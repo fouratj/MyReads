@@ -1,18 +1,41 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import { Link } from 'react-router-dom';
+import Book from './Book';
 
 class Shelf extends React.Component {
-    //this.props.title
-    //this.props.shelf
 
     render() {
+        let books = this.props.books.map( (book, index) => {
+            return <li>
+                        <Book 
+                            title={book.title}
+                            author={book.authors && book.authors[0]}
+                            url={ book.imageLinks && (book.imageLinks.thumbnail || book.imageLinks.smallThumbnail || '')} //some books don't have imagelink, this allows those to fail gracefully
+                            key={book.author + book.title + index}
+                        />
+                    </li>
+        });
+
         return (
 
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{this.props.title}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
+                        {books}
+                    </ol>
+                </div>
+            </div>
+
+
+        )
+    }
+}
+
+export default Shelf;
+
+/*
                         <li>
                             <div className="book">
                                 <div className="book-top">
@@ -49,13 +72,4 @@ class Shelf extends React.Component {
                                 <div className="book-authors">Orson Scott Card</div>
                             </div>
                         </li>
-                    </ol>
-                </div>
-            </div>
-
-
-        )
-    }
-}
-
-export default Shelf;
+*/
