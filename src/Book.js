@@ -12,16 +12,20 @@ class Book extends React.Component {
             'option': e.target.value
         }, () => {
             console.log(this.state);
-        })
+            this.props.updateBook(this.props.book.id, this.state.option)
+        });
     }
+                              
     render () {
+        console.log(this.props)
+        let url = this.props.book.imageLinks && (this.props.book.imageLinks.thumbnail || this.props.book.imageLinks.smallThumbnail || '');
         return (
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url(' + this.props.url + ')' }}></div>
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url(' + url + ')' }}></div>
                     <div className="book-shelf-changer">
                         <select onChange={this.handleSubmit.bind(this)}>
-                            <option value="none" disabled>Move to...</option>
+                            <option value="none" selected>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
                             <option value="read">Read</option>
@@ -29,8 +33,8 @@ class Book extends React.Component {
                         </select>
                     </div>
                 </div>
-                <div className="book-title">{this.props.title}</div>
-                <div className="book-authors">{this.props.author}</div>
+                <div className="book-title">{this.props.book.title}</div>
+                <div className="book-authors">{this.props.book.author}</div>
             </div>
 
         )
