@@ -7,7 +7,8 @@ class Shelf extends React.Component {
 
     render() {
         let books = this.props.books.map( (book, index) => {
-            return <li>
+            return (
+                    <li>
                         <Book 
                             title={book.title}
                             author={book.authors && book.authors[0]}
@@ -15,10 +16,10 @@ class Shelf extends React.Component {
                             key={book.author + book.title + index}
                         />
                     </li>
+            )
         });
 
         return (
-
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{this.props.title}</h2>
                 <div className="bookshelf-books">
@@ -27,14 +28,11 @@ class Shelf extends React.Component {
                     </ol>
                 </div>
             </div>
-
-
         )
     }
 }
 
 export default Shelf;
-
 /*
                         <li>
                             <div className="book">
