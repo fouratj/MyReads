@@ -16,7 +16,7 @@ class BooksApp extends React.Component {
             .then((data) => {
                 this.setState({
                   books: data
-                })
+                });
             });
   }
 
