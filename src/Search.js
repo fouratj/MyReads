@@ -10,8 +10,6 @@ class Search extends React.Component {
     }
 
     handleSubmit () {
-        // e.preventDefault();
-
         BooksAPI.search( this.state.search )
                 .then((data) => {
                     if (data) {
@@ -29,7 +27,7 @@ class Search extends React.Component {
         this.setState({
             search: e.target.value
         }, () => {
-            this.handleSubmit();
+            this.handleSubmit(); // submits forms so user can see prelimirary results
         })
     }
 
