@@ -5,18 +5,14 @@ import './App.css'
 import Shelfs from './Shelfs';
 import Search from './Search'
 
+
 class BooksApp extends React.Component {
   state = {
     books: []
   }
 
   componentDidMount () {
-    BooksAPI.getAll()
-            .then((data) => {
-                this.setState({
-                  books: data
-                });
-            });
+    this.getAllBooks();
   }
 
   updateBook (id, shelf) {
