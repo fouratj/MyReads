@@ -6,11 +6,6 @@ import Shelfs from './Shelfs';
 import Search from './Search'
 
 class BooksApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.getBookByID = this.getBookByID.bind(this);
-  }
-
   state = {
     books: []
   }
