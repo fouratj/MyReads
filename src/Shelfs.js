@@ -10,6 +10,7 @@ class Shelfs extends React.Component {
         let wantToRead = this.props.books.filter( book => (book.shelf === "wantToRead")),
             read = this.props.books.filter( book => (book.shelf === "read")),
             currentlyReading = this.props.books.filter( book => (book.shelf === "currentlyReading"));
+            
         // Broke out each individual shelf into it's own component manually instead of programmatically
         // since it is a static app, and for now, that makes it easier to reason about this way
         return (
