@@ -1,13 +1,13 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
-// Created a Book component that encapsulates each book object
 
+// Created a Book component that encapsulates each book object
 class Book extends React.Component {
     state = {
-        'option': ''
+        'option': '' //user option such as currentlyReading etc
     }
 
-    handleSubmit(e) {
+    handleChange(e) {
         this.setState({
             'option': e.target.value
         }, () => {
@@ -22,7 +22,7 @@ class Book extends React.Component {
                 <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url(' + url + ')' }}></div>
                     <div className="book-shelf-changer">
-                        <select onChange={this.handleSubmit.bind(this)}>
+                        <select onChange={this.handleChange.bind(this)}>
                             <option value="none" selected>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
