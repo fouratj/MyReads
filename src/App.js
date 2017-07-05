@@ -15,16 +15,13 @@ class BooksApp extends React.Component {
   }
 
   updateBook (id, shelf) {
-    console.log('updateBook')
     BooksAPI.update({id: id}, shelf)
             .then( (data) => {
-              console.log(data);
               this.getBookByID(id, shelf);
             });
   }
 
   getBookByID (id, shelf) {
-    console.log('getBookByID')
     BooksAPI.get(id)
             .then((data) => {
               this.setState( (state) => {
