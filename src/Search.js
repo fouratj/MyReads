@@ -17,8 +17,6 @@ class Search extends React.Component {
                     this.setState({
                         results: data
                     });
-                }, () => {
-                    // console.log(this.state.results)
                 });
     }
 
