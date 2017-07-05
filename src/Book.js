@@ -11,13 +11,11 @@ class Book extends React.Component {
         this.setState({
             'option': e.target.value
         }, () => {
-            console.log(this.state);
-            this.props.updateBook(this.props.book.id, this.state.option)
+            this.props.updateBook(this.props.book.id, this.state.option);
         });
     }
                               
     render () {
-        console.log(this.props)
         let url = this.props.book.imageLinks && (this.props.book.imageLinks.thumbnail || this.props.book.imageLinks.smallThumbnail || '');
         return (
             <div className="book">
