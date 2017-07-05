@@ -1,6 +1,6 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
-import {  } from 'react-router-dom';
+// Created a Book component that encapsulates each book object
 
 class Book extends React.Component {
     state = {
