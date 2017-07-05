@@ -1,10 +1,9 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
-import { Route, History } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css'
 import Shelfs from './Shelfs';
 import Search from './Search'
-
 
 class BooksApp extends React.Component {
   state = {
@@ -27,8 +26,8 @@ class BooksApp extends React.Component {
             .then((data) => {
               this.setState( (state) => {
                 state.books = state.books
-                                        .filter( item => (data.title !== item.title))
-                                        .concat(data);
+                                    .filter( item => (data.id !== item.id)) //filters out current book, if present
+                                    .concat(data); // concats new book with previous state
               });
             });
   }
