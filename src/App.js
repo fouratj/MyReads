@@ -54,7 +54,6 @@ class BooksApp extends React.Component {
             <Search
               updateBook={ (id, shelf) => {
                 this.updateBook(id, shelf);
-                {/*history.push('/');*/}
               }
               }
             />
