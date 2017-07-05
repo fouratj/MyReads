@@ -3,18 +3,20 @@ import * as BooksAPI from './BooksAPI'
 import { Link } from 'react-router-dom';
 import Book from './Book';
 
+// This component encapsulates the Search Tab
+
 class Search extends React.Component {
     state = {
-        search: '',
-        results: []
+        search: '', //this is the user's input
+        results: [] //response from the server, if any
     }
 
     handleSubmit () {
         BooksAPI.search( this.state.search )
                 .then((data) => {
-                    if (data) {
+                    if (data) { //to guard against undefined
                         this.setState({
-                            results: data || []
+                            results: data || [] 
                         });
                     }
                     
