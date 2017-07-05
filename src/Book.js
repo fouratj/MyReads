@@ -1,5 +1,4 @@
 import React from 'react'
-import * as BooksAPI from './BooksAPI'
 
 // Created a Book component that encapsulates each book object
 class Book extends React.Component {
