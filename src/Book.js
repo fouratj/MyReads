@@ -11,6 +11,7 @@ class Book extends React.Component {
         this.setState({
             'option': e.target.value
         }, () => {
+            console.log(this.props.book.id);
             this.props.updateBook(this.props.book.id, this.state.option);
         });
     }

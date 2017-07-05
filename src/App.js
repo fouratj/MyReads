@@ -15,13 +15,16 @@ class BooksApp extends React.Component {
   }
 
   updateBook (id, shelf) {
+    console.log('updateBook')
     BooksAPI.update({id: id}, shelf)
             .then( (data) => {
+              console.log(data);
               this.getBookByID(id, shelf);
             });
   }
 
   getBookByID (id, shelf) {
+    console.log('getBookByID')
     BooksAPI.get(id)
             .then((data) => {
               this.setState( (state) => {
@@ -45,20 +48,21 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
 
-        <Route exact path="/" component={() => {
+        <Route exact path="/" render={() => {
             return <Shelfs books={this.state.books} updateBook={this.updateBook.bind(this)} /> }
           } 
         />
 
-        <Route path="/addBook" component={( {history} ) => {
-            return <Search updateBook={ () => {
-              this.updateBook.bind(this);
-              history.push('/');
+        <Route path="/addBook" render={( {history} ) => (
+            <Search
+              updateBook={ (id, shelf) => {
+                this.updateBook(id, shelf);
+                history.push('/');
               }
-             } /> 
-          } }
-        />  
-
+              }
+            />
+          )}
+        />
       </div>
     )
   }
