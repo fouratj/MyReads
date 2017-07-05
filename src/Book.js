@@ -10,7 +10,6 @@ class Book extends React.Component {
         this.setState({
             'option': e.target.value
         }, () => {
-            console.log(this.props.book.id);
             this.props.updateBook(this.props.book.id, this.state.option);
         });
     }
@@ -34,7 +33,6 @@ class Book extends React.Component {
                 <div className="book-title">{this.props.book.title}</div>
                 <div className="book-authors">{this.props.book.author}</div>
             </div>
-
         )
     }
 }

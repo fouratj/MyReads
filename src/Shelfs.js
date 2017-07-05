@@ -39,7 +39,7 @@ class Shelfs extends React.Component {
                      />
 
                 <div className="open-search">
-                    <Link to="addBook">Add a book</Link>
+                    <Link to="/search">Add a book</Link>
                 </div>
             </div>
         )
