@@ -9,14 +9,17 @@ class Search extends React.Component {
         results: []
     }
 
-    handleSubmit (e) {
-        e.preventDefault();
+    handleSubmit () {
+        // e.preventDefault();
 
-        BooksAPI.search( this.state.search)
+        BooksAPI.search( this.state.search )
                 .then((data) => {
-                    this.setState({
-                        results: data
-                    });
+                    if (data) {
+                        this.setState({
+                            results: data || []
+                        });
+                    }
+                    
                 });
     }
 
@@ -25,6 +28,8 @@ class Search extends React.Component {
 
         this.setState({
             search: e.target.value
+        }, () => {
+            this.handleSubmit();
         })
     }
 
@@ -42,9 +47,7 @@ class Search extends React.Component {
                 <div className="search-books-bar">
                     <Link className="close-search" to="/">Close</Link>
                     <div className="search-books-input-wrapper">
-                        <form onSubmit={this.handleSubmit.bind(this)}>
-                            <input onChange={this.handleChange.bind(this)} type="text" placeholder="Search by title or author"/>
-                        </form>
+                        <input onChange={this.handleChange.bind(this)} type="text" placeholder="Search by title or author"/>
                     </div>
                 </div>
                 <div className="search-books-results">
