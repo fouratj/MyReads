@@ -2,6 +2,6 @@
 
 This is the app I built for my React Developer Nanodegree
 
-#Usage
+# Usage
 
 Fork to computer, run NPM install, and NPM Start
